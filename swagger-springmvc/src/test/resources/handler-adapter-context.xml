@@ -12,7 +12,7 @@
     <context:component-scan base-package="com.mangofactory.swagger.dummy"/>
 
     <!-- A RequestMappingHandlerAdapter to simulate other libraries which may add to the spring context-->
-    <bean class="com.mangofactory.swagger.dummy.DummyRequestMappingHandlerAdapter" autowire-candidate="false"/>
+    <bean class="com.mangofactory.swagger.dummy.DummyRequestMappingHandlerAdapter" autowire-candidate="true"/>
     <bean class="com.mangofactory.swagger.configuration.MultipleRMHAConfig" />
 
 </beans>
