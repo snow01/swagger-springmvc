@@ -17,13 +17,13 @@ class ContainerTypesSpec extends Specification {
 
     where:
       containerType                   | name
-      genericListOfSimpleType()       | "List[SimpleType]"
+      genericListOfSimpleType()       | "List[com.mangofactory.swagger.models.SimpleType]"
       genericListOfInteger()          | "List"
       erasedList()                    | "List"
-      genericSetOfSimpleType()        | "Set[SimpleType]"
+      genericSetOfSimpleType()        | "Set[com.mangofactory.swagger.models.SimpleType]"
       genericSetOfInteger()           | "Set"
       erasedSet()                     | "Set"
-      genericClassWithGenericField()  | "GenericType«ResponseEntity«SimpleType»»"
+      genericClassWithGenericField()  | "GenericType«ResponseEntity«com.mangofactory.swagger.models.SimpleType»»"
 
   }
 
@@ -57,7 +57,7 @@ class ContainerTypesSpec extends Specification {
 
     where:
     property          | name                  | itemType        | itemRef            | itemQualifiedType
-    "complexTypes"    | "List"                | null            | "ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
+    "complexTypes"    | "List"                | null            | "com.mangofactory.swagger.models.ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
     "enums"           | "List"                | "string"        | null               | "com.mangofactory.swagger.models.ExampleEnum"
     "aliasOfIntegers" | "List"                | "int"           | null               | "java.lang.Integer"
     "strings"         | "List"                | "string"        | null               | "java.lang.String"
@@ -95,7 +95,7 @@ class ContainerTypesSpec extends Specification {
 
     where:
     property          | type                  | itemType        | itemRef            | itemQualifiedType
-    "complexTypes"    | "Set"                 | null            | "ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
+    "complexTypes"    | "Set"                 | null            | "com.mangofactory.swagger.models.ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
     "enums"           | "Set"                 | "string"        | null               | "com.mangofactory.swagger.models.ExampleEnum"
     "aliasOfIntegers" | "Set"                 | "int"           | null               | "java.lang.Integer"
     "strings"         | "Set"                 | "string"        | null               | "java.lang.String"
@@ -132,7 +132,7 @@ class ContainerTypesSpec extends Specification {
 
     where:
     property          | type       | itemType        | itemRef            | itemQualifiedType
-    "complexTypes"    | "Array"    | null            | "ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
+    "complexTypes"    | "Array"    | null            | "com.mangofactory.swagger.models.ComplexType"      | "com.mangofactory.swagger.models.ComplexType"
     "enums"           | "Array"    | "string"        | null               | "com.mangofactory.swagger.models.ExampleEnum"
     "aliasOfIntegers" | "Array"    | "int"           | null               | "java.lang.Integer"
     "strings"         | "Array"    | "string"        | null               | "java.lang.String"

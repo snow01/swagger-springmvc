@@ -63,8 +63,8 @@ public class DefaultModelProvider implements ModelProvider {
                     itemModelRef(each.getType())
             ));
         }
-        return Optional.of(new Model(typeName(propertiesHost),
-                typeName(propertiesHost),
+        return Optional.of(new Model(typeName(propertiesHost, true),
+                typeName(propertiesHost, false),
                 simpleQualifiedTypeName(propertiesHost),
                 toScalaLinkedHashMap(properties),
                 modelDescription(propertiesHost), Option.apply(""),

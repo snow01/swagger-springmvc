@@ -30,7 +30,7 @@ class AlternatePropertiesSpec extends Specification {
       model.name() == "GenericType«ResponseEntity«Void»»"
       model.properties().contains("genericField")
       def modelProperty = model.properties().get("genericField")
-      modelProperty.get().type() == "Void"
+      modelProperty.get().type() == "java.lang.Void"
       modelProperty.get().qualifiedType() == "java.lang.Void"
       modelProperty.get().items().isEmpty()
   }

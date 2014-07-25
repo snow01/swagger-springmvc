@@ -35,7 +35,7 @@ class ComplexTypeSpec extends Specification {
       property      | type          | qualifiedType                               | isBaseType
       "name"        | "string"      | "java.lang.String"                          | true
       "age"         | "int"         | "int"                                       | true
-      "category"    | "Category"    | "com.mangofactory.swagger.models.Category"  | false
+      "category"    | "com.mangofactory.swagger.models.Category"    | "com.mangofactory.swagger.models.Category"  | false
       "customType"  | "double"      | "java.math.BigDecimal"                      | true
   }
 
@@ -65,7 +65,7 @@ class ComplexTypeSpec extends Specification {
 
     where:
       property      | type            | qualifiedType                                   | isBaseType
-      "parent"      | "RecursiveType" | "com.mangofactory.swagger.models.RecursiveType" | false
+      "parent"      | "com.mangofactory.swagger.models.RecursiveType" | "com.mangofactory.swagger.models.RecursiveType" | false
   }
 
   def "inherited type properties are inferred correctly"() {
@@ -96,7 +96,7 @@ class ComplexTypeSpec extends Specification {
       property            | type          | qualifiedType                               | isBaseType
       "name"              | "string"      | "java.lang.String"                          | true
       "age"               | "int"         | "int"                                       | true
-      "category"          | "Category"    | "com.mangofactory.swagger.models.Category"  | false
+      "category"          | "com.mangofactory.swagger.models.Category"    | "com.mangofactory.swagger.models.Category"  | false
       "customType"        | "double"      | "java.math.BigDecimal"                      | true
       "inheritedProperty" | "string"      | "java.lang.String"                          | true
   }

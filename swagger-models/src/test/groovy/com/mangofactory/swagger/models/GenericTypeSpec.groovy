@@ -32,11 +32,11 @@ class GenericTypeSpec extends Specification{
 
     where:
     modelType                       | propertyType                      | modelNamePart                     |  qualifiedType
-    genericClass()                  | "SimpleType"                      | "SimpleType"                      | "com.mangofactory.swagger.models.SimpleType"
+    genericClass()                  | "com.mangofactory.swagger.models.SimpleType"                      | "SimpleType"                      | "com.mangofactory.swagger.models.SimpleType"
     genericClassWithTypeErased()    | "object"                          | ""                                | "java.lang.Object"
     genericClassWithListField()     | "List"                            | "List«SimpleType»"                | "java.util.List<com.mangofactory.swagger.models.SimpleType>"
-    genericClassWithGenericField()  | "ResponseEntity«SimpleType»"      | "ResponseEntity«SimpleType»"      | "org.springframework.http.ResponseEntity<com.mangofactory.swagger.models.SimpleType>"
-    genericClassWithDeepGenerics()  | "ResponseEntity«List«SimpleType»»"| "ResponseEntity«List«SimpleType»»"| "org.springframework.http.ResponseEntity<java.util.List<com.mangofactory.swagger.models.SimpleType>>"
+    genericClassWithGenericField()  | "ResponseEntity«com.mangofactory.swagger.models.SimpleType»"      | "ResponseEntity«SimpleType»"      | "org.springframework.http.ResponseEntity<com.mangofactory.swagger.models.SimpleType>"
+    genericClassWithDeepGenerics()  | "ResponseEntity«List«com.mangofactory.swagger.models.SimpleType»»"| "ResponseEntity«List«SimpleType»»"| "org.springframework.http.ResponseEntity<java.util.List<com.mangofactory.swagger.models.SimpleType>>"
     genericCollectionWithEnum()     | "Collection«string»"              | "Collection«string»"              | "java.util.Collection<com.mangofactory.swagger.models.ExampleEnum>"
   }
 

@@ -21,10 +21,14 @@ import static com.mangofactory.swagger.models.Types.*;
 public class ResolvedTypes {
 
     public static String typeName(ResolvedType type) {
-        if (isContainerType(type)) {
-            return containerType(type);
-        }
-        return innerTypeName(type);
+      return typeName(type, true);
+    }
+
+    public static String typeName(ResolvedType type, boolean qualified) {
+      if (isContainerType(type)) {
+        return containerType(type);
+      }
+      return innerTypeName(type, qualified);
     }
 
     //DK TODO: Eliminate this repetition
@@ -34,7 +38,6 @@ public class ResolvedTypes {
         }
         return innerTypeName(type);
     }
-
 
     private static String optionalContainerTypeQualifierForReturn(ResolvedType type) {
         if(type.isArray()) {
@@ -55,26 +58,34 @@ public class ResolvedTypes {
 
 
     private static String innerTypeName(ResolvedType type) {
-        if (type.getTypeParameters().size() > 0 && type.getErasedType().getTypeParameters().length > 0) {
-            return genericTypeName(type);
-        }
-        return simpleTypeName(type);
+        return innerTypeName(type, true);
+    }
+
+    private static String innerTypeName(ResolvedType type, boolean qualified) {
+      if (type.getTypeParameters().size() > 0 && type.getErasedType().getTypeParameters().length > 0) {
+        return genericTypeName(type, qualified);
+      }
+      return simpleTypeName(type, qualified);
     }
 
     public static String genericTypeName(ResolvedType resolvedType) {
-        StringBuilder sb = new StringBuilder(String.format("%s«", resolvedType.getErasedType().getSimpleName()));
-        boolean first = true;
-        for (int index = 0; index < resolvedType.getErasedType().getTypeParameters().length; index++) {
-            ResolvedType typeParam = resolvedType.getTypeParameters().get(index);
-            if (first) {
-                sb.append(innerTypeName(typeParam));
-                first = false;
-            } else {
-                sb.append(String.format(",%s", innerTypeName(typeParam)));
-            }
+        return genericTypeName(resolvedType, true);
+    }
+
+    public static String genericTypeName(ResolvedType resolvedType, boolean qualified) {
+      StringBuilder sb = new StringBuilder(String.format("%s«", resolvedType.getErasedType().getSimpleName()));
+      boolean first = true;
+      for (int index = 0; index < resolvedType.getErasedType().getTypeParameters().length; index++) {
+        ResolvedType typeParam = resolvedType.getTypeParameters().get(index);
+        if (first) {
+          sb.append(innerTypeName(typeParam, qualified));
+          first = false;
+        } else {
+          sb.append(String.format(",%s", innerTypeName(typeParam, qualified)));
         }
-        sb.append("»");
-        return sb.toString();
+      }
+      sb.append("»");
+      return sb.toString();
     }
 
     public static String simpleQualifiedTypeName(ResolvedType type) {
@@ -87,18 +98,22 @@ public class ResolvedTypes {
 
 
     public static String simpleTypeName(ResolvedType type) {
-        Class<?> erasedType = type.getErasedType();
-        if (type instanceof ResolvedPrimitiveType) {
-            return typeNameFor(erasedType);
-        } else if (erasedType.isEnum()) {
-            return "string";
-        } else if (type instanceof ResolvedObjectType) {
-            String typeName = typeNameFor(erasedType);
-            if (typeName != null) {
-                return typeName;
-            }
+        return simpleTypeName(type, true);
+    }
+
+    public static String simpleTypeName(ResolvedType type, boolean qualified) {
+      Class<?> erasedType = type.getErasedType();
+      if (type instanceof ResolvedPrimitiveType) {
+        return typeNameFor(erasedType);
+      } else if (erasedType.isEnum()) {
+        return "string";
+      } else if (type instanceof ResolvedObjectType) {
+        String typeName = typeNameFor(erasedType);
+        if (typeName != null) {
+          return typeName;
         }
-        return erasedType.getSimpleName();
+      }
+      return qualified ? erasedType.getName() : erasedType.getSimpleName();
     }
 
 

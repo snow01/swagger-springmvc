@@ -91,7 +91,7 @@ public class ApiModelReader implements Command<RequestMappingContext> {
         Method method = handlerMethod.getMethod();
         Map<String, Model> modelMap = newHashMap();
 
-        log.debug("Reading parameters models for handlerMethod |{}|", handlerMethod.getMethod().getName());
+        log.info("Reading parameters models for handlerMethod |{}|", handlerMethod.getMethod().getName());
 
         List<ResolvedMethodParameter> parameterTypes = handlerMethodResolver.methodParameters(handlerMethod);
         Annotation[][] annotations = method.getParameterAnnotations();
@@ -110,7 +110,7 @@ public class ApiModelReader implements Command<RequestMappingContext> {
                                 modelContext);
                         Optional<Model> pModel = modelProvider.modelFor(modelContext);
                         if (pModel.isPresent()) {
-                            log.debug("Swagger generated parameter model id: {}, name: {}, schema: {} models",
+                            log.info("Swagger generated parameter model id: {}, name: {}, schema: {} models",
                                     pModel.get().id(),
                                     pModel.get().name());
                             modelMap.put(pModel.get().id(), pModel.get());

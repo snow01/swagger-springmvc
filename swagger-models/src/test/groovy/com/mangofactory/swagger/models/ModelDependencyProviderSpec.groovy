@@ -18,17 +18,17 @@ class ModelDependencyProviderSpec extends Specification {
     where:
     modelType                       | dependencies
     simpleType()                    | []
-    complexType()                   | ["Category"]
-    inheritedComplexType()          | ["Category"]
-    typeWithLists()                 | ["List", "Category",  "ComplexType"].sort()
-    typeWithSets()                  | ["Set", "Category",  "ComplexType"].sort()
-    typeWithArrays()                | ["Array", "Category", "ComplexType"]
-    genericClass()                  | ["List", "SimpleType"]
-    genericClassWithListField()     | ["List", "SimpleType"]
-    genericClassWithGenericField()  | ["Charset", "HttpHeaders", "List",  "Map«string,string»", "MediaType", "ResponseEntity«SimpleType»", "Set", "SimpleType", "URI"].sort()
-    genericClassWithDeepGenerics()  | ["Charset", "HttpHeaders", "List",  "Map«string,string»", "MediaType", "ResponseEntity«List«SimpleType»»", "Set", "SimpleType", "URI"].sort()
+    complexType()                   | ["com.mangofactory.swagger.models.Category"]
+    inheritedComplexType()          | ["com.mangofactory.swagger.models.Category"]
+    typeWithLists()                 | ["List", "com.mangofactory.swagger.models.Category",  "com.mangofactory.swagger.models.ComplexType"].sort()
+    typeWithSets()                  | ["Set", "com.mangofactory.swagger.models.Category",  "com.mangofactory.swagger.models.ComplexType"].sort()
+    typeWithArrays()                | ["Array", "com.mangofactory.swagger.models.Category", "com.mangofactory.swagger.models.ComplexType"]
+    genericClass()                  | ["List", "com.mangofactory.swagger.models.SimpleType"]
+    genericClassWithListField()     | ["List", "com.mangofactory.swagger.models.SimpleType"]
+    genericClassWithGenericField()  | ["java.nio.charset.Charset", "org.springframework.http.HttpHeaders", "List",  "Map«string,string»", "org.springframework.http.MediaType", "ResponseEntity«com.mangofactory.swagger.models.SimpleType»", "Set", "com.mangofactory.swagger.models.SimpleType", "java.net.URI"].sort()
+    genericClassWithDeepGenerics()  | ["java.nio.charset.Charset", "org.springframework.http.HttpHeaders", "List",  "Map«string,string»", "org.springframework.http.MediaType", "ResponseEntity«List«com.mangofactory.swagger.models.SimpleType»»", "Set", "com.mangofactory.swagger.models.SimpleType", "java.net.URI"].sort()
     genericCollectionWithEnum()     | ["Collection«string»", "List"]
-    recursiveType()                 | ["SimpleType"]
+    recursiveType()                 | ["com.mangofactory.swagger.models.SimpleType"]
   }
 
 
